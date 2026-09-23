@@ -1,0 +1,11 @@
+@use 'variables';
+
+
+
+body {
+  background-color: variables.$color-bg-page;
+  color: variables.$color-text-main;
+  font-family: variables.$font-main;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
