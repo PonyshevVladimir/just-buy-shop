@@ -1,0 +1,44 @@
+@use '../../assets/styles/variables';
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: variables.$font-main;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 10px 20px;
+  border-radius: variables.$radius-button;
+  transition: all 0.2s ease;
+  cursor: pointer;
+
+  // Модификатор 1: Синяя акцентная кнопка
+  &--accent {
+    background-color: variables.$color-accent;
+    color: variables.$color-bg-card;
+
+    &:hover {
+      background-color: variables.$color-accent-hover;
+    }
+  }
+
+  &--outline {
+    background-color: transparent;
+    color: variables.$color-accent;
+    border: 1px solid variables.$color-accent;
+
+    &:hover {
+      background-color: rgba(37, 99, 235, 0.05);
+    }
+  }
+
+  &--link {
+    background: none;
+    color: variables.$color-text-main;
+    padding: 10px 0;
+
+    &:hover {
+      color: variables.$color-accent;
+    }
+  }
+}
