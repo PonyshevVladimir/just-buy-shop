@@ -1,0 +1,77 @@
+{
+  "signup": [
+    {
+      "id": "1",
+      "data": {
+        "user_token": "mock_bearer_token_warmarok_12345"
+      }
+    }
+  ],
+  "login": [
+    {
+      "id": "1",
+      "data": {
+        "user_token": "mock_bearer_token_warmarok_12345"
+      }
+    },
+    {
+      "email": "vladimirponysev@gmail.com",
+      "password": "65856585",
+      "id": "V71iJRxfywI"
+    },
+    {
+      "email": "vladimirponysev@gmail.com",
+      "password": "65856585",
+      "id": "b9kTBKXB6GM"
+    },
+    {
+      "email": "vladimonysev@gmail.com",
+      "password": "658565853434",
+      "id": "t1YnwWjYsEk"
+    },
+    {
+      "email": "vladimirponysev@gmail.com",
+      "password": "65856585",
+      "id": "cMicwfxdQvE"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "name": "Фигурное мыло «Лаванда»",
+      "price": 350,
+      "description": "Успокаивающий аромат натуральной лаванды и мягкая очищающая пена."
+    },
+    {
+      "id": "2",
+      "name": "Мыло ручной работы «Цитрус»",
+      "price": 400,
+      "description": "Бодрящий заряд свежести спелого апельсина и лимона для вашей кожи."
+    },
+    {
+      "id": "3",
+      "name": "Подарочный набор «Кофе и Шоколад»",
+      "price": 1200,
+      "description": "Эксклюзивный наборт из двух брусков мыла-скраба с натуральным молотым кофе."
+    },
+    {
+      "id": "4",
+      "name": "Мыло скраб «Овсяные хлопья»",
+      "price": 380,
+      "description": "Деликатный пилинг эффект и глубокое увлажнение на каждый день."
+    },
+    {
+      "id": "5",
+      "name": "Детское мыло «Мишка»",
+      "price": 450,
+      "description": "Гипоаллергенный состав с экстрактом ромашки для самой нежной кожи."
+    },
+    {
+      "id": "6",
+      "name": "Мыло «Морской бриз» с солью",
+      "price": 390,
+      "description": "Минеральное мыло с морской солью для тонуса и гладкости кожи."
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
