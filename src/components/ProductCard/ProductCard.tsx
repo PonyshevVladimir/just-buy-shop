@@ -7,9 +7,10 @@ interface ProductCardProps {
     image: string;
     description: string;
     isAuth: boolean;
+    onAddToCart: () => void;
 }
 
-export default function ProductCard({ name, price, image, description, isAuth }: ProductCardProps) {
+export default function ProductCard({ name, price, image, description, isAuth, onAddToCart }: ProductCardProps) {
     return (
         <article className="product-card">
             <div className="product-card__image-wrapper">
@@ -24,7 +25,7 @@ export default function ProductCard({ name, price, image, description, isAuth }:
                     <span className="product-card__price">{price} p.</span>
 
                     {isAuth && (
-                        <Button variant="outline" className="product-card__btn">
+                        <Button variant="outline" className="product-card__btn" onClick={onAddToCart}>
                             В корзину
                         </Button>
                     )}

@@ -1,0 +1,68 @@
+@use '../assets/styles/variables';
+
+.orders-page {
+  width: 100%;
+  padding: 40px 0;
+
+  &__container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  &__title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 32px;
+  }
+}
+
+.order-block {
+  background-color: variables.$color-bg-card;
+  border-radius: variables.$radius-main; // 12px
+  box-shadow: 0 0 0 1px variables.$color-border, 0 2px 4px rgba(0, 0, 0, 0.02);
+  padding: 24px;
+  margin-bottom: 20px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid variables.$color-border;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+  }
+
+  &__number {
+    font-size: 18px;
+    font-weight: 600;
+    color: variables.$color-text-main;
+  }
+
+  &__price {
+    font-size: 18px;
+    font-weight: 700;
+    color: variables.$color-accent;
+  }
+
+  &__products-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+.order-product-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: variables.$color-text-main;
+
+  .prod-name {
+    font-weight: 500;
+  }
+
+  .prod-meta {
+    color: variables.$color-text-muted;
+  }
+}

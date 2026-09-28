@@ -17,22 +17,17 @@
     {
       "email": "vladimirponysev@gmail.com",
       "password": "65856585",
-      "id": "V71iJRxfywI"
+      "id": "APOw3aFqOJs"
     },
     {
       "email": "vladimirponysev@gmail.com",
       "password": "65856585",
-      "id": "b9kTBKXB6GM"
-    },
-    {
-      "email": "vladimonysev@gmail.com",
-      "password": "658565853434",
-      "id": "t1YnwWjYsEk"
+      "id": "aNyj5f7f_yo"
     },
     {
       "email": "vladimirponysev@gmail.com",
       "password": "65856585",
-      "id": "cMicwfxdQvE"
+      "id": "cCmmMX_2250"
     }
   ],
   "products": [
@@ -71,6 +66,86 @@
       "name": "Мыло «Морской бриз» с солью",
       "price": 390,
       "description": "Минеральное мыло с морской солью для тонуса и гладкости кожи."
+    }
+  ],
+  "order": [
+    {
+      "id": "1024",
+      "products": [
+        {
+          "id": 1,
+          "name": "Фигурное мыло «Лаванда»",
+          "price": 350,
+          "quantity": 2
+        },
+        {
+          "id": 4,
+          "name": "Мыло скраб «Овсяные хлопья»",
+          "price": 380,
+          "quantity": 1
+        }
+      ],
+      "order_price": 1080
+    },
+    {
+      "products": [
+        {
+          "id": "1",
+          "name": "Фигурное мыло «Лаванда»",
+          "price": 350,
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "name": "Мыло ручной работы «Цитрус»",
+          "price": 400,
+          "quantity": 2
+        },
+        {
+          "id": "3",
+          "name": "Подарочный набор «Кофе и Шоколад»",
+          "price": 1200,
+          "quantity": 1
+        },
+        {
+          "id": "4",
+          "name": "Мыло скраб «Овсяные хлопья»",
+          "price": 380,
+          "quantity": 1
+        },
+        {
+          "id": "5",
+          "name": "Детское мыло «Мишка»",
+          "price": 450,
+          "quantity": 1
+        }
+      ],
+      "order_price": 3180,
+      "id": "mvTscrGGXks"
+    },
+    {
+      "products": [
+        {
+          "id": "3",
+          "name": "Подарочный набор «Кофе и Шоколад»",
+          "price": 1200,
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "name": "Мыло ручной работы «Цитрус»",
+          "price": 400,
+          "quantity": 1
+        },
+        {
+          "id": "6",
+          "name": "Мыло «Морской бриз» с солью",
+          "price": 390,
+          "quantity": 1
+        }
+      ],
+      "order_price": 1990,
+      "id": "oeu2_H4kwsQ"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

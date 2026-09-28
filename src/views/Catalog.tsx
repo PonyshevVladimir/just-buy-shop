@@ -13,9 +13,10 @@ import oceanSoap from '../assets/images/ocean-soap.png';
 
 interface CatalogProps {
     isAuth: boolean;
+    onAddToCart: (product: { id: number; name: string; price: number; image: string }) => void;
 }
 
-export default function Catalog({ isAuth }: CatalogProps) {
+export default function Catalog({ isAuth, onAddToCart }: CatalogProps) {
     const [products, setProducts] = useState<Product[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [error, setError] = useState<string>('');
@@ -42,7 +43,6 @@ export default function Catalog({ isAuth }: CatalogProps) {
 
     const getProductImage = (id: number) => {
         const images = [lavenderSoap, citrusSoap, coffeeSoap, oatSoap, bearSoap, oceanSoap];
-        // Берем остаток от деления, чтобы если в базе будет больше 6 товаров, картинки просто циклились
         return images[(id - 1) % images.length];
     };
 
@@ -65,8 +65,14 @@ export default function Catalog({ isAuth }: CatalogProps) {
                                 name={product.name}
                                 price={product.price}
                                 description={product.description}
-                                image={getProductImage(product.id)} // Теперь сюда передается локальный файл!
+                                image={getProductImage(product.id)}
                                 isAuth={isAuth}
+                                onAddToCart={() => onAddToCart({
+                                    id: product.id,
+                                    name: product.name,
+                                    price: product.price,
+                                    image: getProductImage(product.id)
+                                })}
                             />
                         ))
                     )}

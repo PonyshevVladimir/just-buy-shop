@@ -6,9 +6,10 @@ interface HeaderProps {
     isAuth: boolean;
     onLogout: () => void;
     onCartOpen: () => void;
+    cartCount: number;
 }
 
-export default function Header({ isAuth, onLogout, onCartOpen }: HeaderProps) {
+export default function Header({ isAuth, onLogout, onCartOpen, cartCount }: HeaderProps) {
     const navigate = useNavigate();
 
     return (
@@ -26,7 +27,7 @@ export default function Header({ isAuth, onLogout, onCartOpen }: HeaderProps) {
                                 Оформленные заказы
                             </Button>
                             <Button variant="accent" onClick={onCartOpen}>
-                                Корзина <span className="cart-count">3</span>
+                                Корзина <span className="cart-count">{cartCount}</span>
                             </Button>
                             <Button variant="outline" onClick={onLogout}>Выйти</Button>
                         </div>

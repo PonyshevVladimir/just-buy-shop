@@ -15,3 +15,12 @@ export async function getProducts(): Promise<ProductsResponse> {
     const response = await $http.get<ProductsResponse>('products');
     return response.data;
 }
+
+export interface CartItemType {
+    id: number;
+    name: string;
+    price: number;
+    image: string;
+    quantity: number;
+}
+
