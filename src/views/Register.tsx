@@ -1,7 +1,6 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Button from '../components/Button/Button.tsx';
-import { signup as signupApi } from '../api/auth.ts';
+import { useRegisterForm } from '../hooks/useRegisterForm.ts';
+import { useNavigate } from 'react-router-dom';
 import './AuthPages.scss';
 
 interface RegisterProps {
@@ -11,133 +10,59 @@ interface RegisterProps {
 export default function Register({ setIsAuth }: RegisterProps) {
     const navigate = useNavigate();
 
-    // Стейты для всех 6 полей из вашей Figma
-    const [surname, setSurname] = useState<string>('');
-    const [name, setName] = useState<string>('');
-    const [patronymic, setPatronymic] = useState<string>('');
-    const [login, setLogin] = useState<string>('');
-    const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
-
-    const [error, setError] = useState<string>('');
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setError('');
-
-        const combinedFio = `${surname} ${name} ${patronymic}`.trim();
-
-        try {
-            const response = await signupApi({
-                fio: combinedFio,
-                login,
-                email,
-                password
-            });
-
-            const token = response.data.user_token;
-            localStorage.setItem('user_token', token);
-
-            setIsAuth(true);
-
-            navigate('/');
-        } catch (err) {
-            const errorObject = err as { message?: string };
-            setError(errorObject.message || 'Произошла ошибка при регистрации');
-        }
-    };
+    const {
+        surname, setSurname,
+        name, setName,
+        patronymic, setPatronymic,
+        login, setLogin,
+        email, setEmail,
+        password, setPassword,
+        serverError, errors,
+        handleSubmit
+    } = useRegisterForm(setIsAuth);
 
     return (
         <div className="auth-page">
             <div className="auth-container">
                 <h2 className="auth-container__title">Регистрация</h2>
 
-                <form className="auth-form" onSubmit={handleSubmit}>
+                <form className="auth-form" onSubmit={handleSubmit} noValidate>
 
-                    {error && (
-                        <div style={{
-                            backgroundColor: '#fef2f2',
-                            color: '#ef4444',
-                            padding: '12px',
-                            borderRadius: '8px',
-                            fontSize: '14px',
-                            fontWeight: 500,
-                            textAlign: 'center',
-                            border: '1px solid #fee2e2'
-                        }}>
-                            {error}
-                        </div>
-                    )}
+                    {serverError && <div className="auth-server-error-banner">{serverError}</div>}
 
-                    <div className="auth-field">
+                    <div className={`auth-field ${errors.surname ? 'auth-field--error' : ''}`}>
                         <label className="auth-field__label">Фамилия</label>
-                        <input
-                            type="text"
-                            className="auth-field__input"
-                            placeholder="Введите фамилию"
-                            value={surname}
-                            onChange={(e) => setSurname(e.target.value)}
-                            required
-                        />
+                        <input type="text" className="auth-field__input" value={surname} onChange={(e) => setSurname(e.target.value)} />
+                        <span className="auth-field__error-text">{errors.surname}</span>
                     </div>
 
-                    <div className="auth-field">
+                    <div className={`auth-field ${errors.name ? 'auth-field--error' : ''}`}>
                         <label className="auth-field__label">Имя</label>
-                        <input
-                            type="text"
-                            className="auth-field__input"
-                            placeholder="Введите имя"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            required
-                        />
+                        <input type="text" className="auth-field__input" value={name} onChange={(e) => setName(e.target.value)} />
+                        <span className="auth-field__error-text">{errors.name}</span>
                     </div>
 
                     <div className="auth-field">
                         <label className="auth-field__label">Отчество</label>
-                        <input
-                            type="text"
-                            className="auth-field__input"
-                            placeholder="Введите отчество (при наличии)"
-                            value={patronymic}
-                            onChange={(e) => setPatronymic(e.target.value)}
-                        />
+                        <input type="text" className="auth-field__input" value={patronymic} onChange={(e) => setPatronymic(e.target.value)} />
                     </div>
 
-                    <div className="auth-field">
+                    <div className={`auth-field ${errors.login ? 'auth-field--error' : ''}`}>
                         <label className="auth-field__label">Логин</label>
-                        <input
-                            type="text"
-                            className="auth-field__input"
-                            placeholder="Придумайте логин"
-                            value={login}
-                            onChange={(e) => setLogin(e.target.value)}
-                            required
-                        />
+                        <input type="text" className="auth-field__input" value={login} onChange={(e) => setLogin(e.target.value)} />
+                        <span className="auth-field__error-text">{errors.login}</span>
                     </div>
 
-                    <div className="auth-field">
+                    <div className={`auth-field ${errors.email ? 'auth-field--error' : ''}`}>
                         <label className="auth-field__label">Электронная почта</label>
-                        <input
-                            type="email"
-                            className="auth-field__input"
-                            placeholder="example@mail.com"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                        />
+                        <input type="email" className="auth-field__input" value={email} onChange={(e) => setEmail(e.target.value)} />
+                        <span className="auth-field__error-text">{errors.email}</span>
                     </div>
 
-                    <div className="auth-field">
+                    <div className={`auth-field ${errors.password ? 'auth-field--error' : ''}`}>
                         <label className="auth-field__label">Пароль</label>
-                        <input
-                            type="password"
-                            className="auth-field__input"
-                            placeholder="Минимум 6 symbols"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
+                        <input type="password" className="auth-field__input" value={password} onChange={(e) => setPassword(e.target.value)} />
+                        <span className="auth-field__error-text">{errors.password}</span>
                     </div>
 
                     <Button variant="accent" className="auth-form__submit-btn" type="submit">

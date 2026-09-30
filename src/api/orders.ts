@@ -1,4 +1,6 @@
 import { $http } from './http.ts';
+import { type CartItemType } from './products.ts';
+
 
 export interface OrderProduct {
     id: number;

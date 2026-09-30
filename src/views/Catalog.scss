@@ -2,16 +2,29 @@
   width: 100%;
   padding: 40px 0;
 
+  @media (max-width: 550px)  {
+    padding: 20px 0;
+  }
+
   &__container {
     max-width: 1440px;
     margin: 0 auto;
     padding: 0 24px;
+
+    @media (max-width: 550px)  {
+      padding: 0 12px;
+    }
   }
 
   &__title {
     font-size: 32px;
     font-weight: 700;
     margin-bottom: 32px;
+
+    @media (max-width: 550px)  {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
   }
 
   &__grid {
@@ -24,13 +37,17 @@
       grid-template-columns: repeat(3, 1fr);
     }
 
-
     @media (max-width: 900px) {
       grid-template-columns: repeat(2, 1fr);
     }
 
     @media (max-width: 550px) {
       grid-template-columns: 1fr;
+    }
+
+    @media (max-width: 550px)  {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
     }
   }
 }

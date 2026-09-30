@@ -5,6 +5,13 @@
       "data": {
         "user_token": "mock_bearer_token_warmarok_12345"
       }
+    },
+    {
+      "fio": "Понышев Владимир",
+      "login": "warmarok",
+      "email": "vladimirponysev@gmail.com",
+      "password": "65856585",
+      "id": "QxkWWzVTeDU"
     }
   ],
   "login": [
@@ -28,6 +35,26 @@
       "email": "vladimirponysev@gmail.com",
       "password": "65856585",
       "id": "cCmmMX_2250"
+    },
+    {
+      "email": "vladimirponysev@gmail.com",
+      "password": "65856585",
+      "id": "NdEx41Femd8"
+    },
+    {
+      "email": "vladimirponysev@gmail.com",
+      "password": "65856585",
+      "id": "PgQVTlDdIJ8"
+    },
+    {
+      "email": "vladimirponysev@gmail.com",
+      "password": "65856585",
+      "id": "QmROjkkyA1k"
+    },
+    {
+      "email": "vladimirponysev@gmail.com",
+      "password": "65856585",
+      "id": "h4Mw8nTTgXo"
     }
   ],
   "products": [
@@ -146,6 +173,66 @@
       ],
       "order_price": 1990,
       "id": "oeu2_H4kwsQ"
+    },
+    {
+      "products": [
+        {
+          "id": "3",
+          "name": "Подарочный набор «Кофе и Шоколад»",
+          "price": 1200,
+          "quantity": 3
+        },
+        {
+          "id": "2",
+          "name": "Мыло ручной работы «Цитрус»",
+          "price": 400,
+          "quantity": 3
+        }
+      ],
+      "order_price": 4800,
+      "id": "Q2KTlzusaaE"
+    },
+    {
+      "products": [
+        {
+          "id": "4",
+          "name": "Мыло скраб «Овсяные хлопья»",
+          "price": 380,
+          "quantity": 6
+        },
+        {
+          "id": "3",
+          "name": "Подарочный набор «Кофе и Шоколад»",
+          "price": 1200,
+          "quantity": 2
+        }
+      ],
+      "order_price": 4680,
+      "id": "_6AAh0wAkc8"
+    },
+    {
+      "products": [
+        {
+          "id": "1",
+          "name": "Фигурное мыло «Лаванда»",
+          "price": 350,
+          "quantity": 4
+        },
+        {
+          "id": "2",
+          "name": "Мыло ручной работы «Цитрус»",
+          "price": 400,
+          "quantity": 3
+        },
+        {
+          "id": "4",
+          "name": "Мыло скраб «Овсяные хлопья»",
+          "price": 380,
+          "quantity": 3
+        }
+      ],
+      "order_price": 3740,
+      "id": "2_jiPIDsqs8"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
