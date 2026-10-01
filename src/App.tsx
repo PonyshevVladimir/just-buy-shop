@@ -6,6 +6,7 @@ import Catalog from './views/Catalog.tsx';
 import Login from './views/Login.tsx';
 import Register from './views/Register.tsx';
 import Orders from './views/Orders.tsx';
+import NotFound from './views/NotFound.tsx';
 import { type CartItemType } from './api/products.ts';
 
 function App() {
@@ -83,11 +84,13 @@ function App() {
 
             <Routes>
                 <Route path="/" element={<Catalog isAuth={isAuth} onAddToCart={handleAddToCart} />} />
-                <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
-                <Route path="/register" element={<Register setIsAuth={setIsAuth} />} />
+                <Route path="/login" element={isAuth ? <Navigate to="/" replace /> : <Login setIsAuth={setIsAuth} />} />
+                <Route path="/register" element={isAuth ? <Navigate to="/" replace /> : <Register setIsAuth={setIsAuth} />} />
                 <Route path="/orders" element={isAuth ? <Orders /> : <Navigate to="/" replace />} />
-                <Route path="*" element={<Navigate to="/" replace />} />
+                <Route path="*" element={<NotFound />} />
             </Routes>
+
+            
         </BrowserRouter>
     );
 }
