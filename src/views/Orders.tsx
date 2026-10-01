@@ -25,39 +25,54 @@ export default function Orders() {
         fetchOrders();
     }, []);
 
+    const getFormattedDate = () => {
+        const today = new Date();
+        return today.toLocaleDateString('ru-RU', {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric'
+        });
+    };
+
     return (
         <div className="orders-page">
             <div className="orders-page__container">
-                <h1 className="orders-page__title">Мои заказы</h1>
+                <h1 className="orders-page__title">Оформленные заказы</h1>
 
-                {error && <div style={{ color: '#ef4444', marginBottom: '20px' }}>{error}</div>}
+                {error && <div className="orders-page__error">{error}</div>}
 
                 {isLoading ? (
-                    <p style={{ color: '#64748b' }}>Загрузка истории покупок...</p>
+                    <p className="orders-page__status">Загрузка истории покупок...</p>
                 ) : orders.length === 0 ? (
-                    <p style={{ color: '#64748b', fontSize: '15px' }}>Вы еще не оформили ни одного заказа.</p>
+                    <p className="orders-page__status">Вы еще не оформили ни одного заказа.</p>
                 ) : (
-                    <div className="orders-page__list">
-                        {orders.map((order) => (
-                            <div key={order.id} className="order-block">
 
-                                <div className="order-block__header">
-                                    <span className="order-block__number">Заказ №{order.id}</span>
-                                    <span className="order-block__price">{order.order_price} ₽</span>
+                    <div className="orders-page__grid">
+                        {orders.map((order) => (
+                            <article key={order.id} className="order-card">
+
+                                {/* Верхняя часть: Номер заказа */}
+                                <div className="order-card__header">
+                                    <span className="order-card__number">Заказ №{order.id}</span>
                                 </div>
 
-                                <div className="order-block__products-list">
-                                    {order.products.map((prod) => (
-                                        <div key={prod.id} className="order-product-row">
+                                <div className="order-card__content">
+                                    {order.products && order.products.map((prod) => (
+                                        <div key={prod.id} className="order-card__product-row">
                                             <span className="prod-name">{prod.name}</span>
-                                            <span className="prod-meta">
-                        {prod.quantity} шт. × {prod.price} ₽
-                      </span>
+                                            <span className="prod-qty">{prod.quantity} шт.</span>
                                         </div>
                                     ))}
                                 </div>
 
-                            </div>
+                                <div className="order-card__footer">
+                                    <time className="order-card__date">{getFormattedDate()}</time>
+                                    <div className="order-card__price-box">
+                                        <span className="price-value">{order.order_price} ₽</span>
+                                    </div>
+                                </div>
+
+                            </article>
                         ))}
                     </div>
                 )}
