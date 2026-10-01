@@ -7,10 +7,27 @@ interface HeaderProps {
     onLogout: () => void;
     onCartOpen: () => void;
     cartCount: number;
+    addToast: (text: string, type?: 'success' | 'warning' | 'error') => void;
 }
 
-export default function Header({ isAuth, onLogout, onCartOpen, cartCount }: HeaderProps) {
+export default function Header({ isAuth, onLogout, onCartOpen, cartCount, addToast }: HeaderProps) {
     const navigate = useNavigate();
+
+    const handleLoginClick = () => {
+        if (isAuth) {
+            addToast('Вы уже вошли в систему!', 'warning');
+        } else {
+            navigate('/login');
+        }
+    };
+
+    const handleRegisterClick = () => {
+        if (isAuth) {
+            addToast('Вы уже зарегистрированы в системе!', 'warning');
+        } else {
+            navigate('/register');
+        }
+    };
 
     return (
         <header className="header">
@@ -33,10 +50,10 @@ export default function Header({ isAuth, onLogout, onCartOpen, cartCount }: Head
                         </div>
                     ) : (
                         <div className="header__guest-menu">
-                            <Button variant="outline" onClick={() => navigate('/register')}>
+                            <Button variant="outline" onClick={handleRegisterClick}>
                                 Зарегистрироваться
                             </Button>
-                            <Button variant="accent" onClick={() => navigate('/login')}>
+                            <Button variant="accent" onClick={handleLoginClick}>
                                 Войти
                             </Button>
                         </div>

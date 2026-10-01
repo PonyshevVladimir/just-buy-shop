@@ -12,6 +12,7 @@ interface CartSidebarProps {
     onUpdateQuantity: (id: number, action: 'increase' | 'decrease') => void;
     onRemoveFromCart: (id: number) => void;
     onClearCart: () => void;
+    addToast: (text: string, type?: 'success' | 'warning' | 'error') => void;
 }
 
 export default function CartSidebar({
@@ -20,22 +21,24 @@ export default function CartSidebar({
                                         cartItems,
                                         onUpdateQuantity,
                                         onRemoveFromCart,
-                                        onClearCart
+                                        onClearCart,
+                                        addToast
                                     }: CartSidebarProps) {
 
     const navigate = useNavigate();
-    const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
+    const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
     const handleCheckout = async () => {
         try {
             await createOrder(cartItems, totalPrice);
 
-            alert('Заказ успешно оформлен!');
+            addToast('Заказ успешно оформлен!', 'success');
+
             onClearCart();
             onClose();
             navigate('/orders');
-        } catch (err) {
-            alert('Не удалось оформить заказ. Попробуйте позже.');
+        } catch {
+            addToast('Не удалось оформить заказ. Попробуйте повторить позже.', 'error');
         }
     };
 

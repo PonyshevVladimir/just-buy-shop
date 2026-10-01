@@ -70,6 +70,26 @@
       "email": "vladimirponysev@gmail.com",
       "password": "65856585",
       "id": "VnZuJfeKt9g"
+    },
+    {
+      "email": "vladimirponysev@gmail.com",
+      "password": "65856585",
+      "id": "QKjhxqSXqIY"
+    },
+    {
+      "email": "vladimirponysev@gmail.com",
+      "password": "65856585",
+      "id": "Jg6MIky4MNE"
+    },
+    {
+      "email": "vladimirponysev@gmail.com",
+      "password": "65856585",
+      "id": "6yF-0qgJV00"
+    },
+    {
+      "email": "vladimirponysev@gmail.com",
+      "password": "65856585",
+      "id": "ABA07fDygC4"
     }
   ],
   "products": [
@@ -248,6 +268,114 @@
       ],
       "order_price": 3740,
       "id": "2_jiPIDsqs8"
+    },
+    {
+      "products": [
+        {
+          "id": "2",
+          "name": "Мыло ручной работы «Цитрус»",
+          "price": 400,
+          "quantity": 2
+        },
+        {
+          "id": "3",
+          "name": "Подарочный набор «Кофе и Шоколад»",
+          "price": 1200,
+          "quantity": 1
+        },
+        {
+          "id": "4",
+          "name": "Мыло скраб «Овсяные хлопья»",
+          "price": 380,
+          "quantity": 1
+        }
+      ],
+      "order_price": 2380,
+      "id": "Fef29g7T7WE"
+    },
+    {
+      "products": [
+        {
+          "id": "4",
+          "name": "Мыло скраб «Овсяные хлопья»",
+          "price": 380,
+          "quantity": 1
+        }
+      ],
+      "order_price": 380,
+      "id": "FY1HGmRqOXs"
+    },
+    {
+      "products": [
+        {
+          "id": "3",
+          "name": "Подарочный набор «Кофе и Шоколад»",
+          "price": 1200,
+          "quantity": 1
+        },
+        {
+          "id": "4",
+          "name": "Мыло скраб «Овсяные хлопья»",
+          "price": 380,
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "name": "Мыло ручной работы «Цитрус»",
+          "price": 400,
+          "quantity": 1
+        }
+      ],
+      "order_price": 1980,
+      "id": "-QND_4mNciE"
+    },
+    {
+      "products": [
+        {
+          "id": "3",
+          "name": "Подарочный набор «Кофе и Шоколад»",
+          "price": 1200,
+          "quantity": 1
+        }
+      ],
+      "order_price": 1200,
+      "id": "eZgqhiS4ypA"
+    },
+    {
+      "products": [
+        {
+          "id": "3",
+          "name": "Подарочный набор «Кофе и Шоколад»",
+          "price": 1200,
+          "quantity": 3
+        }
+      ],
+      "order_price": 3600,
+      "id": "54b3azz82rM"
+    },
+    {
+      "products": [
+        {
+          "id": "3",
+          "name": "Подарочный набор «Кофе и Шоколад»",
+          "price": 1200,
+          "quantity": 1
+        }
+      ],
+      "order_price": 1200,
+      "id": "snx04fQDayo"
+    },
+    {
+      "products": [
+        {
+          "id": "3",
+          "name": "Подарочный набор «Кофе и Шоколад»",
+          "price": 1200,
+          "quantity": 3
+        }
+      ],
+      "order_price": 3600,
+      "id": "S0DlFIwgG_E"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
