@@ -68,7 +68,7 @@ export default function Register({ setIsAuth, addToast }: RegisterProps) {
                         Зарегистрироваться
                     </Button>
                     <p className="auth-form__switch">
-                        Уже есть акчивный аккаунт? <span className="auth-form__link" onClick={() => navigate('/login')}>Войти</span>
+                        Уже есть активный аккаунт? <span className="auth-form__link" onClick={() => navigate('/login')}>Войти</span>
                     </p>
                 </form>
             </div>

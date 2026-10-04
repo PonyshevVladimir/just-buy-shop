@@ -57,13 +57,13 @@ function App() {
             }
 
             setCart((prevCart) => {
-                const existingItem = prevCart.find((item) => item.id === product.id);
+                const existingItem = prevCart.find((item) => item.product_id === product.id);
                 if (existingItem) {
                     return prevCart.map((item) =>
-                        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+                        item.product_id === product.id ? { ...item, quantity: item.quantity + 1 } : item
                     );
                 }
-                return [...prevCart, { ...product, quantity: 1 }];
+                return [...prevCart, { ...product, id: product.id, product_id: product.id, quantity: 1 }];
             });
             addToast(`Товар "${product.name}" добавлен в корзину!`, 'success');
         } catch {
@@ -72,20 +72,23 @@ function App() {
     };
 
     const handleUpdateQuantity = async (id: number, action: 'increase' | 'decrease') => {
+        const cartItem = cart.find(item => item.id === id || item.product_id === id);
+        if (!cartItem) return;
+
         try {
             if (isAuth) {
                 if (action === 'increase') {
-                    await addToServerCart(id);
+                    await addToServerCart(cartItem.product_id);
                 } else {
-                    await removeFromServerCart(id);
+                    await removeFromServerCart(cartItem.id);
                 }
             }
 
             setCart((prevCart) =>
                 prevCart
                     .map((item) => {
-                        if (item.id === id) {
-                            const newQty = action === 'increase' ? item.quantity + 1 : action === 'decrease' ? item.quantity - 1 : item.quantity;
+                        if (item.product_id === cartItem.product_id) {
+                            const newQty = action === 'increase' ? item.quantity + 1 : item.quantity - 1;
                             return { ...item, quantity: newQty };
                         }
                         return item;
@@ -98,13 +101,15 @@ function App() {
     };
 
     const handleRemoveFromCart = async (id: number) => {
+        const cartItem = cart.find(item => item.id === id || item.product_id === id);
+        if (!cartItem) return;
+
         try {
             if (isAuth) {
-                await removeFromServerCart(id);
+                await removeFromServerCart(cartItem.id);
             }
-            const item = cart.find(i => i.id === id);
-            setCart((prevCart) => prevCart.filter((item) => item.id !== id));
-            if (item) addToast(`Товар "${item.name}" удален из корзины`, 'warning');
+            setCart((prevCart) => prevCart.filter((item) => item.product_id !== cartItem.product_id));
+            addToast(`Товар "${cartItem.name}" удален из корзины`, 'warning');
         } catch {
             addToast('Ошибка удаления товара на сервере', 'error');
         }
@@ -113,7 +118,7 @@ function App() {
     const totalCartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
     return (
-        <BrowserRouter>
+        <BrowserRouter basename="/just-buy-shop">
             <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
                 <Header
                     isAuth={isAuth}

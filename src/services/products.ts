@@ -18,6 +18,7 @@ export async function getProducts(): Promise<ProductsResponse> {
 
 export interface CartItemType {
     id: number;
+    product_id: number;
     name: string;
     price: number;
     image: string;

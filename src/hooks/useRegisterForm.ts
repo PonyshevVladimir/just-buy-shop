@@ -60,7 +60,10 @@ export function useRegisterForm(
         setServerError('');
         setErrors({});
 
-        if (!validateForm()) return;
+        if (!validateForm()) {
+            addToast('Пожалуйста, проверьте корректность заполнения всех полей формы', 'warning');
+            return;
+        }
 
         const combinedFio = `${surname} ${name} ${patronymic}`.trim();
 
@@ -76,6 +79,8 @@ export function useRegisterForm(
             addToast('Не удалось зарегистрироваться', 'error');
         }
     };
+
+
 
     return {
         surname, setSurname,
