@@ -5,9 +5,10 @@ import './AuthPages.scss';
 
 interface RegisterProps {
     setIsAuth: (auth: boolean) => void;
+    addToast: (text: string, type?: 'success' | 'warning' | 'error') => void;
 }
 
-export default function Register({ setIsAuth }: RegisterProps) {
+export default function Register({ setIsAuth, addToast }: RegisterProps) {
     const navigate = useNavigate();
 
     const {
@@ -19,16 +20,14 @@ export default function Register({ setIsAuth }: RegisterProps) {
         password, setPassword,
         serverError, errors,
         handleSubmit
-    } = useRegisterForm(setIsAuth);
+    } = useRegisterForm(setIsAuth, addToast);
 
     return (
         <div className="auth-page">
             <div className="auth-container">
                 <h2 className="auth-container__title">Регистрация</h2>
-
                 <form className="auth-form" onSubmit={handleSubmit} noValidate>
-
-                    {serverError && <div className="auth-server-error-banner">{serverError}</div>}
+                    {serverError && <div className="auth-server-error-banner" style={{ color: '#ef4444', marginBottom: '12px' }}>{serverError}</div>}
 
                     <div className={`auth-field ${errors.surname ? 'auth-field--error' : ''}`}>
                         <label className="auth-field__label">Фамилия</label>
@@ -68,11 +67,9 @@ export default function Register({ setIsAuth }: RegisterProps) {
                     <Button variant="accent" className="auth-form__submit-btn" type="submit">
                         Зарегистрироваться
                     </Button>
-
                     <p className="auth-form__switch">
-                        Уже есть аккаунт? <span className="auth-form__link" onClick={() => navigate('/login')}>Войти</span>
+                        Уже есть акчивный аккаунт? <span className="auth-form__link" onClick={() => navigate('/login')}>Войти</span>
                     </p>
-
                 </form>
             </div>
         </div>

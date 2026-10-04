@@ -1,4 +1,4 @@
-import { $http } from './http.ts';
+import { $http } from '../api/http.ts';
 
 export interface RegisterData {
     fio: string;

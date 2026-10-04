@@ -1,75 +1,36 @@
-# React + TypeScript + Vite
+# JB-shop — SPA Магазин
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Адаптивное SPA-приложение интернет-магазина, разработанное в рамках Модуля 2. Проект полностью изолирован по архитектурным принципам MVC, поддерживает динамический расчёт корзины, сквозную систему тост-уведомлений и плавную анимацию экранов.
 
-Currently, two official plugins are available:
+## Стек технологий
+*   **Frontend Core:** React 18, TypeScript, Vite
+*   **Routing & Motion:** React Router DOM v6, Framer Motion
+*   **Styling:** SCSS (SASS), БЭМ-методология, CSS Grid / Flexbox
+*   **Networking:** Axios (с интерцепторами для обработки ошибок и Bearer-токенов)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Структура папок проекта
+Согласно требованиям к архитектуре, проект разделён на изолированные слои:
+*   `src/api/` — Низкоуровневый HTTP-клиент (Axios инстанс и перехватчики).
+*   `src/services/` — Бизнес-логика, асинхронные запросы к API (auth, products, orders).
+*   `src/router/` — Конфигурация путей приложения и анимация экранов.
+*   `src/hooks/` — Кастомные React-хуки для изоляции логики форм от шаблонов.
+*   `src/components/` — Переиспользуемые UI-компоненты (Button, Header, Sidebar, Toast, Карточки).
+*   `src/views/` — Компоненты страниц / представлений (Catalog, Login, Register, Orders, NotFound).
+*   `src/assets/` — Глобальные стили, переменные SCSS и статичные медиа-файлы (логотипы).
 
-## React Compiler
+## Инструкция по установке и запуску
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+### 1. Клонирование и установка зависимостей
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Запуск в режиме разработки (Dev Mode)
+```bash
+npm run dev
+```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+### 3. Сборка проекта для продакшена (Production Build)
+```bash
+npm run build
 ```

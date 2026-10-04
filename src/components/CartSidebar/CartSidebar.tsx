@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import Button from '../Button/Button.tsx';
 import CartItem from '../CartItem/CartItem.tsx';
-import { type CartItemType } from '../../api/products.ts';
-import { createOrder } from '../../api/orders.ts';
+import { type CartItemType } from '../../services/products.ts';
+import { createOrder } from '../../services/orders.ts';
 import './CartSidebar.scss';
 
 interface CartSidebarProps {
@@ -26,19 +26,19 @@ export default function CartSidebar({
                                     }: CartSidebarProps) {
 
     const navigate = useNavigate();
-
     const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
     const handleCheckout = async () => {
         try {
-            await createOrder(cartItems, totalPrice);
+            await createOrder();
 
-            addToast('Заказ успешно оформлен!', 'success');
+            addToast('Заказ успешно оформлен! Проверьте вкладку заказов.', 'success');
 
             onClearCart();
             onClose();
             navigate('/orders');
         } catch {
-            addToast('Не удалось оформить заказ. Попробуйте повторить позже.', 'error');
+            addToast('Не удалось оформить заказ. Убедитесь, что корзина на сервере не пуста.', 'error');
         }
     };
 

@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login as loginApi } from '../api/auth.ts';
+import { login as loginApi } from '../services/auth.ts';
 
 interface ValidationErrors {
   email?: string;
   password?: string;
 }
 
-export function useLoginForm(setIsAuth: (auth: boolean) => void) {
+export function useLoginForm(
+    setIsAuth: (auth: boolean) => void,
+    addToast: (text: string, type?: 'success' | 'warning' | 'error') => void
+) {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
@@ -16,7 +19,7 @@ export function useLoginForm(setIsAuth: (auth: boolean) => void) {
   const [serverError, setServerError] = useState('');
   const [errors, setErrors] = useState<ValidationErrors>({});
 
-    const validateForm = (): boolean => {
+  const validateForm = (): boolean => {
     const tempErrors: ValidationErrors = {};
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -47,10 +50,12 @@ export function useLoginForm(setIsAuth: (auth: boolean) => void) {
       const response = await loginApi({ email, password });
       localStorage.setItem('user_token', response.data.user_token);
       setIsAuth(true);
+      addToast('С возвращением! Авторизация прошла успешно.', 'success');
       navigate('/');
     } catch (err) {
       const errorObject = err as { message?: string };
       setServerError(errorObject.message || 'Произошла ошибка при входе');
+      addToast('Неверный логин или пароль', 'error');
     }
   };
 

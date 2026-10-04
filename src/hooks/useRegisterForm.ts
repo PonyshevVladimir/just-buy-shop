@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { signup as signupApi } from '../api/auth.ts';
+import { signup as signupApi } from '../services/auth.ts';
 
 interface ValidationErrors {
     surname?: string;
@@ -10,7 +10,10 @@ interface ValidationErrors {
     password?: string;
 }
 
-export function useRegisterForm(setIsAuth: (auth: boolean) => void) {
+export function useRegisterForm(
+    setIsAuth: (auth: boolean) => void,
+    addToast: (text: string, type?: 'success' | 'warning' | 'error') => void
+) {
     const navigate = useNavigate();
 
     const [surname, setSurname] = useState('');
@@ -65,10 +68,12 @@ export function useRegisterForm(setIsAuth: (auth: boolean) => void) {
             const response = await signupApi({ fio: combinedFio, login, email, password });
             localStorage.setItem('user_token', response.data.user_token);
             setIsAuth(true);
+            addToast(`Добро пожаловать, ${name}! Регистрация успешна.`, 'success');
             navigate('/');
         } catch (err) {
             const errorObject = err as { message?: string };
             setServerError(errorObject.message || 'Произошла ошибка при регистрации');
+            addToast('Не удалось зарегистрироваться', 'error');
         }
     };
 
